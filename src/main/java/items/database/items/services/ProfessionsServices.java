@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 import items.database.items.data.Profession;
+import items.database.items.data.Character;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
@@ -19,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class ProfessionsServices {
 
 	private final ObjectMapper objectMapper;
+
 	private static Connection dbConnection() {
 		try {
 			Connection con = DriverManager.getConnection(
@@ -46,7 +48,49 @@ public class ProfessionsServices {
 		return null;
 	}
 
+	private static ArrayList<String> getProfessionsNameFromDB() throws IOException {
+		try {
+			ArrayList<String> result = new ArrayList<>();
+			Statement stmt = dbConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select DISTINCT ProfessionName from professions");
+			while (rs.next()) {
+				result.add(rs.getString(1));
+			}
+			dbConnection().close();
+			return result;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return null;
+	}
+
+	private static ArrayList<Character> getCharactersThatHaveThatProfession(Profession profession) throws IOException {
+		try {
+			ArrayList<Character> result = new ArrayList<>();
+			Statement stmt = dbConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select * from Characters where \r\n"
+					+ "CharacterName in (select CharacterThatHasIt from professions where ProfessionName=\""
+					+ profession.getProfessionName() + "\")");
+			while (rs.next()) {
+				result.add(new Character(rs.getString(1), rs.getString(2)));
+			}
+			dbConnection().close();
+			return result;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return null;
+	}
+
 	public String getListOfProfessions() throws IOException {
 		return new Gson().toJson(getProfessionsFromDB());
+	}
+
+	public String getListOfProfessionsNames() throws IOException {
+		return new Gson().toJson(getProfessionsNameFromDB());
+	}
+
+	public String getListOfCharactersThatHaveThatProfession(Profession profession) throws IOException {
+		return new Gson().toJson(getCharactersThatHaveThatProfession(profession));
 	}
 }

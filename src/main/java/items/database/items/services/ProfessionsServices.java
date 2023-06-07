@@ -34,6 +34,7 @@ public class ProfessionsServices {
 
 	private static ArrayList<Profession> getProfessionsFromDB() throws IOException {
 		try {
+			System.out.println("Getting professions from the database");
 			ArrayList<Profession> result = new ArrayList<>();
 			Statement stmt = dbConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("select * from professions");
@@ -43,6 +44,7 @@ public class ProfessionsServices {
 			dbConnection().close();
 			return result;
 		} catch (Exception e) {
+			System.out.println("Error at getting professions from the database");
 			System.out.println(e);
 		}
 		return null;
@@ -50,6 +52,7 @@ public class ProfessionsServices {
 
 	private static ArrayList<String> getProfessionsNameFromDB() throws IOException {
 		try {
+			System.out.println("Getting All the professions name from the database");
 			ArrayList<String> result = new ArrayList<>();
 			Statement stmt = dbConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("select DISTINCT ProfessionName from professions");
@@ -59,6 +62,7 @@ public class ProfessionsServices {
 			dbConnection().close();
 			return result;
 		} catch (Exception e) {
+			System.out.println("Error at getting professions name from the database");
 			System.out.println(e);
 		}
 		return null;
@@ -66,6 +70,7 @@ public class ProfessionsServices {
 
 	private static ArrayList<Character> getCharactersThatHaveThatProfession(Profession profession) throws IOException {
 		try {
+			System.out.println("Getting Characters from the database using the name of the Profession");
 			ArrayList<Character> result = new ArrayList<>();
 			Statement stmt = dbConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("select * from Characters where \r\n"
@@ -77,6 +82,7 @@ public class ProfessionsServices {
 			dbConnection().close();
 			return result;
 		} catch (Exception e) {
+			System.out.println("Error at getting Character professions from the database");
 			System.out.println(e);
 		}
 		return null;

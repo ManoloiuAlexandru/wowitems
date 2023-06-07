@@ -35,6 +35,7 @@ public class CharactersServices {
 
 	private static ArrayList<Character> getCharactersFromDB() throws IOException {
 		try {
+			System.out.println("Getting Characters from the database");
 			ArrayList<Character> result = new ArrayList<>();
 			Statement stmt = dbConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("select * from Characters");
@@ -44,7 +45,8 @@ public class CharactersServices {
 			dbConnection().close();
 			return result;
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("Error at getting Characters from the database");
+			System.out.println("Error:"+e);
 		}
 		return null;
 	}
@@ -55,6 +57,7 @@ public class CharactersServices {
 
 	public static ArrayList<Profession> getCharactersProfessionsPost(Character character) {
 		try {
+			System.out.println("Getting Character professions from the database");
 			ArrayList<Profession> result = new ArrayList<>();
 			Statement stmt = dbConnection().createStatement();
 			ResultSet rs = stmt.executeQuery(
@@ -65,6 +68,7 @@ public class CharactersServices {
 			dbConnection().close();
 			return result;
 		} catch (Exception e) {
+			System.out.println("Error at getting Character professions from the database");
 			System.out.println(e);
 		}
 		return null;

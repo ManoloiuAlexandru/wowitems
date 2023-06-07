@@ -7,6 +7,17 @@ import Professions from './components/Professions'
 import Blacksmithing from './components/Blacksmithing'
 import Alchemy from './components/Alchemy'
 import Herbalism from './components/Herbalism'
+import Enchanting from './components/Enchanting'
+import Engineering from './components/Engineering'
+import Inscription from './components/Inscription'
+import Jewelcrafting from './components/Jewelcrafting'
+import Leatherworking from './components/Leatherworking'
+import Mining from './components/Mining'
+import Skinning from './components/Skinning'
+import Tailoring from './components/Tailoring'
+import Archaeology from './components/Archaeology'
+import Cooking from './components/Cooking'
+import Fishing from './components/Fishing'
 import { Routes, Route, useNavigate } from 'react-router-dom';
 const baseURL = "http://127.0.0.1:8087/professions/listofprofessions";
 
@@ -39,6 +50,17 @@ export default function App() {
                     <Route path="/Blacksmithing" element={<RenderBlacksmithing />} />
                     <Route path="/Alchemy" element={<RenderAlchemy />} />
                     <Route path="/Herbalism" element={<RenderHerbalism />} />
+                    <Route path="/Enchanting" element={<RenderEnchanting />} />
+                    <Route path="/Engineering" element={<RenderEngineering />} />
+                    <Route path="/Inscription" element={<RenderInscription />} />
+                    <Route path="/Jewelcrafting" element={<RenderJewelcrafting />} />
+                    <Route path="/Leatherworking" element={<RenderLeatherworking />} />
+                    <Route path="/Mining" element={<RenderMining />} />
+                    <Route path="/Skinning" element={<RenderSkinning />} />
+                    <Route path="/Tailoring" element={<RenderTailoring />} />
+                    <Route path="/Archaeology" element={<RenderArchaeology />} />
+                    <Route path="/Cooking" element={<RenderCooking />} />
+                    <Route path="/Fishing" element={<RenderFishing />} />
                 </Routes>
             </div>
         </div>
@@ -59,4 +81,37 @@ function RenderAlchemy() {
 }
 function RenderHerbalism() {
     return <Herbalism />
+}
+function RenderEnchanting() {
+    return <Enchanting />
+}
+function RenderEngineering() {
+    return <Engineering />
+}
+function RenderInscription() {
+    return <Inscription />
+}
+function RenderJewelcrafting() {
+    return <Jewelcrafting />
+}
+function RenderLeatherworking() {
+    return <Leatherworking />
+}
+function RenderMining() {
+    return <Mining />
+}
+function RenderSkinning() {
+    return <Skinning />
+}
+function RenderTailoring() {
+    return <Tailoring />
+}
+function RenderArchaeology() {
+    return <Archaeology />
+}
+function RenderCooking() {
+    return <Cooking />
+}
+function RenderFishing() {
+    return <Fishing />
 }

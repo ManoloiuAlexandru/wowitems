@@ -30,4 +30,9 @@ public class CharactersController {
 	public ArrayList<Profession> charachterProfessions(@RequestBody Character character) throws IOException {
 		return charachtersServices.getCharactersProfessions(character);
 	}
+	@PostMapping("/addnewcharacter")
+	public void addNewCharacter(@RequestBody Character character)
+	{
+		charachtersServices.addNewCharacter(character);
+	}
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -46,7 +47,7 @@ public class CharactersServices {
 			return result;
 		} catch (Exception e) {
 			System.out.println("Error at getting Characters from the database");
-			System.out.println("Error:"+e);
+			System.out.println("Error:" + e);
 		}
 		return null;
 	}
@@ -76,5 +77,21 @@ public class CharactersServices {
 
 	public ArrayList<Profession> getCharactersProfessions(Character character) {
 		return getCharactersProfessionsPost(character);
+	}
+
+	public static void addNewCharacters(Character character) {
+		System.out.println("Adding new character to database");
+		try {
+			Statement stmt = dbConnection().createStatement();
+			stmt.executeUpdate("insert into Characters(CharacterName,ArmorType) values (\""
+					+ character.getCharacterName() + "\",\"" + character.getArmorType() + "\");");
+		} catch (SQLException e) {
+			System.out.println("Error at adding new Character to database");
+			System.out.println(e);
+		}
+	}
+
+	public void addNewCharacter(Character character) {
+		addNewCharacters(character);
 	}
 }
